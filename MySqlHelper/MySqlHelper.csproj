@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net462;netstandard2.0;net6.0</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>MySqlCore</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Khujrat S Shaikh</Authors>
+		<Company>FreeLance</Company>
+		<Description>Single-class MySQL helper for .NET with ADO.NET, EF Core, async streaming, pagination, logging, bulk insert/upsert, and transactions.</Description>
+		<PackageTags>
+			MySQL,CRUD,Database,ADO.NET,EFCore,EntityFramework,BulkInsert,Upsert,Async,AsyncDatabase,Transactions,Logging,Pagination,Helper,ORM,DataAccess,.NET,.NET6,.NETFramework,NetStandard,CrossPlatform,MySQLHelper,DataMapper,RepositoryPattern,EF,EFCoreHelper,BulkOperations,SQL,MySqlOptimizer,DataUtilities,DbHelper,OpenSource,CSharp,DotNet
+		</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<ProjectUrl>https://github.com/khujrat17/MySqlCore</ProjectUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/khujrat17/MySqlCore</RepositoryUrl>
+		<LangVersion>10.0</LangVersion>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- MySql.Data and MySqlOptimizer for net462+ -->
+		<PackageReference Include="MySql.Data" Version="8.2.0" />
+		<PackageReference Include="MySqlOptimizer" Version="2.1.0" Condition="'$(TargetFramework)' != 'netstandard2.0'" />
+
+		<!-- EF Core only for net6.0 -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" Condition="'$(TargetFramework)' == 'net6.0'" />
+	</ItemGroup>
+	<ItemGroup>
+		<!-- Include README in the package root -->
+		<None Include="README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+</Project>
