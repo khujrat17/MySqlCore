@@ -2,10 +2,13 @@
 
 [![.NET](https://github.com/khujrat17/MySqlCore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/khujrat17/MySqlCore/actions/workflows/dotnet.yml)
 [![NuGet](https://img.shields.io/nuget/v/MySqlCore.svg)](https://www.nuget.org/packages/MySqlCore)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/MySqlCore.svg)](https://www.nuget.org/packages/MySqlCore)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 **MySqlCore** is a lightweight, modern .NET library that simplifies working with MySQL databases.
 It provides async ADO.NET operations, EF Core integration, bulk insert/upsert, pagination, transactions, and logging support.
+
+> ⚡ All public classes and methods include XML documentation for IntelliSense.
 
 ---
 
@@ -15,7 +18,7 @@ It provides async ADO.NET operations, EF Core integration, bulk insert/upsert, p
 * EF Core integration (.NET 6.0)
 * Transactions & error handling
 * Pagination & async streaming for large datasets
-* Bulk insert/upsert
+* Bulk insert & upsert
 * Query logging support
 * Multi-framework support: .NET Framework 4.6.2+, .NET Standard 2.0, .NET 6.0
 
@@ -35,12 +38,14 @@ Install-Package MySqlCore -Version 1.0.0
 dotnet add package MySqlCore --version 1.0.0
 ```
 
+> Compatible with .NET Framework 4.6.2+, .NET Standard 2.0, and .NET 6.0.
+
 ---
 
 ## Quick Start
 
 ```csharp
-using MySqlHelper;
+using MySqlCore;
 
 var db = new MySqlHelper("your_connection_string");
 
@@ -58,6 +63,9 @@ await db.InsertAsync("Users", new User { Name = "John Doe" });
 ### ADO.NET CRUD
 
 ```csharp
+using MySqlCore;
+using MySql.Data.MySqlClient;
+
 var conn = new MySqlConnection("your_connection_string");
 await conn.OpenAsync();
 
@@ -72,6 +80,21 @@ await MySqlHelper.UpdateAsync(conn, "Users", new User { Id = 1, Name = "Jane" },
 
 // Delete
 await MySqlHelper.DeleteAsync(conn, "Users", "Id", 1);
+```
+
+### Bulk Insert / Upsert
+
+```csharp
+var users = new List<User> {
+    new User { Name = "Alice" },
+    new User { Name = "Bob" }
+};
+
+// Bulk Insert
+await MySqlHelper.BulkInsertAsync(conn, "Users", users);
+
+// Bulk Upsert (insert or update based on primary key)
+await MySqlHelper.BulkUpsertAsync(conn, "Users", users, "Id");
 ```
 
 ### EF Core Integration (.NET 6.0)
@@ -127,6 +150,8 @@ MySqlHelper.QueryLogger = async sql => {
 | `QueryEF`             | Query records via EF Core             |
 | `UpdateEFAsync`       | Update a record via EF Core           |
 | `DeleteEFAsync`       | Delete a record via EF Core           |
+| `BulkInsertAsync`     | Insert multiple records efficiently   |
+| `BulkUpsertAsync`     | Insert or update multiple records     |
 
 ---
 
@@ -138,6 +163,16 @@ Contributions are welcome! To contribute:
 2. Create a new branch for your feature/bugfix
 3. Submit a pull request with tests and examples
 4. Ensure all builds pass via GitHub Actions
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines.
+
+---
+
+## Getting Help
+
+* File issues via [GitHub Issues](https://github.com/khujrat17/MySqlCore/issues)
+* Check usage examples above
+* Ask questions in GitHub Discussions (if enabled)
 
 ---
 
