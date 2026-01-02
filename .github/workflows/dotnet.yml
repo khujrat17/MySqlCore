@@ -1,3 +1,20 @@
+# ------------------------------------------
+# Setup GitHub Actions Workflow for .NET
+# ------------------------------------------
+
+$workflowDir = ".github/workflows"
+$workflowFile = "$workflowDir/dotnet.yml"
+$repoName = "MySqlCore"   # adjust if needed
+$dotnetVersion = "6.0.x"
+
+# Ensure workflow directory exists
+if (-Not (Test-Path $workflowDir)) {
+    New-Item -ItemType Directory -Path $workflowDir -Force
+    Write-Host "Created $workflowDir directory"
+}
+
+# Write workflow file
+$workflowContent = @"
 name: .NET CI
 
 on:
@@ -12,13 +29,30 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: $dotnetVersion
+
     - name: Restore
       run: dotnet restore MySqlHelper.slnx
+
     - name: Build
       run: dotnet build MySqlHelper.slnx --configuration Release --no-restore
+
     - name: Test
       run: dotnet test MySqlHelper.slnx --no-build --verbosity normal
+"@
+
+$workflowContent | Set-Content -Path $workflowFile -Force
+Write-Host "Workflow file written to $workflowFile"
+
+# Commit and push
+git add $workflowFile
+git commit -m "Add GitHub Actions workflow for .NET build and tests"
+git push origin main
+
+# Print README badge snippet
+$badgeMarkdown = "[![.NET](https://github.com/khujrat17/$repoName/actions/workflows/dotnet.yml/badge.svg)](https://github.com/khujrat17/$repoName/actions/workflows/dotnet.yml)"
+Write-Host "`n✅ Badge markdown ready to add to README:`n$badgeMarkdown"
