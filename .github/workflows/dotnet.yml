@@ -1,0 +1,24 @@
+name: .NET CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore
+      run: dotnet restore MySqlHelper.slnx
+    - name: Build
+      run: dotnet build MySqlHelper.slnx --configuration Release --no-restore
+    - name: Test
+      run: dotnet test MySqlHelper.slnx --no-build --verbosity normal
