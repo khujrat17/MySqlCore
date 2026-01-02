@@ -234,6 +234,9 @@ namespace MySqlHelper
             return list;
         }
 
+
+
+
         private static bool HasColumn(this DbDataReader reader, string columnName)
         {
             for (int i = 0; i < reader.FieldCount; i++)
