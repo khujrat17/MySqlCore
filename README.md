@@ -1,6 +1,3 @@
-
-
-````markdown
 # MySqlCore
 
 [![.NET](https://github.com/khujrat17/MySqlCore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/khujrat17/MySqlCore/actions/workflows/dotnet.yml)
@@ -29,19 +26,12 @@ It provides async ADO.NET operations, EF Core integration, bulk insert/upsert, p
 ### NuGet Package Manager
 ```powershell
 Install-Package MySqlCore -Version 1.0.0
-````
 
-### .NET CLI
 
-```bash
+.NET CLI
 dotnet add package MySqlCore --version 1.0.0
-```
 
----
-
-## Quick Start
-
-```csharp
+Quick Start
 using MySqlHelper;
 
 var db = new MySqlHelper("your_connection_string");
@@ -51,15 +41,11 @@ var users = await db.SelectAsync<User>("Users", "Id = 1");
 
 // Insert record
 await db.InsertAsync("Users", new User { Name = "John Doe" });
-```
 
----
 
-## Usage Examples
 
-### ADO.NET CRUD
-
-```csharp
+Usage Examples
+ADO.NET CRUD
 var conn = new MySqlConnection("your_connection_string");
 await conn.OpenAsync();
 
@@ -74,11 +60,9 @@ await MySqlHelper.UpdateAsync(conn, "Users", new User { Id = 1, Name = "Jane" },
 
 // Delete
 await MySqlHelper.DeleteAsync(conn, "Users", "Id", 1);
-```
 
-### EF Core Integration (.NET 6.0)
 
-```csharp
+EF Core Integration (.NET 6.0)
 using Microsoft.EntityFrameworkCore;
 
 var context = new AppDbContext();
@@ -94,28 +78,25 @@ await MySqlHelper.UpdateEFAsync(context, user);
 
 // Delete
 await MySqlHelper.DeleteEFAsync(context, user);
-```
 
-### Transactions
 
-```csharp
+
+Transactions
+
 await MySqlHelper.RunTransactionAsync(conn, async tx => {
     await MySqlHelper.InsertAsync(conn, "Users", new User { Id = 2, Name = "Alice" });
     await MySqlHelper.UpdateAsync(conn, "Users", new User { Id = 2, Name = "Bob" }, "Id");
 });
-```
 
-### Logging
 
-```csharp
+
+Logging
+
 MySqlHelper.QueryLogger = async sql => {
     Console.WriteLine($"Executing SQL: {sql}");
 };
-```
 
----
-
-## Quick Reference Table
+Quick Reference Table
 
 | Method                | Description                           |
 | --------------------- | ------------------------------------- |
@@ -130,31 +111,28 @@ MySqlHelper.QueryLogger = async sql => {
 | `UpdateEFAsync`       | Update a record via EF Core           |
 | `DeleteEFAsync`       | Delete a record via EF Core           |
 
----
 
-## Contributing
+
+Contributing
 
 Contributions are welcome! To contribute:
 
-1. Fork the repository
-2. Create a new branch for your feature/bugfix
-3. Submit a pull request with tests and examples
-4. Ensure all builds pass via GitHub Actions
+Fork the repository
 
----
+Create a new branch for your feature/bugfix
 
-## License
+Submit a pull request with tests and examples
 
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
+Ensure all builds pass via GitHub Actions
 
----
 
-## Repository
+License
 
-[GitHub Repository](https://github.com/khujrat17/MySqlCore)
+This project is licensed under the MIT License. See LICENSE
+ for details.
 
-```
+Repository
 
----
+GitHub Repository
 
 
