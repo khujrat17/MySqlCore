@@ -11,13 +11,13 @@ It provides async ADO.NET operations, EF Core integration, bulk insert/upsert, p
 
 ## Features
 
-- Async/await support for ADO.NET operations
-- EF Core integration (.NET 6.0)
-- Transactions & error handling
-- Pagination & async streaming for large datasets
-- Bulk insert/upsert
-- Query logging support
-- Multi-framework support: .NET Framework 4.6.2+, .NET Standard 2.0, .NET 6.0
+- Async/await support for ADO.NET operations  
+- EF Core integration (.NET 6.0)  
+- Transactions & error handling  
+- Pagination & async streaming for large datasets  
+- Bulk insert/upsert  
+- Query logging support  
+- Multi-framework support: .NET Framework 4.6.2+, .NET Standard 2.0, .NET 6.0  
 
 ---
 
@@ -26,113 +26,3 @@ It provides async ADO.NET operations, EF Core integration, bulk insert/upsert, p
 ### NuGet Package Manager
 ```powershell
 Install-Package MySqlCore -Version 1.0.0
-
-
-.NET CLI
-dotnet add package MySqlCore --version 1.0.0
-
-Quick Start
-using MySqlHelper;
-
-var db = new MySqlHelper("your_connection_string");
-
-// Select records
-var users = await db.SelectAsync<User>("Users", "Id = 1");
-
-// Insert record
-await db.InsertAsync("Users", new User { Name = "John Doe" });
-
-
-
-Usage Examples
-ADO.NET CRUD
-var conn = new MySqlConnection("your_connection_string");
-await conn.OpenAsync();
-
-// Insert
-await MySqlHelper.InsertAsync(conn, "Users", new User { Id = 1, Name = "John" });
-
-// Select
-var users = await MySqlHelper.SelectAsync<User>(conn, "Users", "Id = 1");
-
-// Update
-await MySqlHelper.UpdateAsync(conn, "Users", new User { Id = 1, Name = "Jane" }, "Id");
-
-// Delete
-await MySqlHelper.DeleteAsync(conn, "Users", "Id", 1);
-
-
-EF Core Integration (.NET 6.0)
-using Microsoft.EntityFrameworkCore;
-
-var context = new AppDbContext();
-
-// Insert
-await MySqlHelper.InsertEFAsync(context, new User { Name = "John" });
-
-// Query
-var allUsers = MySqlHelper.QueryEF<User>(context).ToList();
-
-// Update
-await MySqlHelper.UpdateEFAsync(context, user);
-
-// Delete
-await MySqlHelper.DeleteEFAsync(context, user);
-
-
-
-Transactions
-
-await MySqlHelper.RunTransactionAsync(conn, async tx => {
-    await MySqlHelper.InsertAsync(conn, "Users", new User { Id = 2, Name = "Alice" });
-    await MySqlHelper.UpdateAsync(conn, "Users", new User { Id = 2, Name = "Bob" }, "Id");
-});
-
-
-
-Logging
-
-MySqlHelper.QueryLogger = async sql => {
-    Console.WriteLine($"Executing SQL: {sql}");
-};
-
-Quick Reference Table
-
-| Method                | Description                           |
-| --------------------- | ------------------------------------- |
-| `InsertAsync`         | Insert a record into a table          |
-| `SelectAsync`         | Select records asynchronously         |
-| `UpdateAsync`         | Update records                        |
-| `DeleteAsync`         | Delete records                        |
-| `RunTransactionAsync` | Run multiple queries in a transaction |
-| `QueryLogger`         | Log executed SQL statements           |
-| `InsertEFAsync`       | Insert a record via EF Core           |
-| `QueryEF`             | Query records via EF Core             |
-| `UpdateEFAsync`       | Update a record via EF Core           |
-| `DeleteEFAsync`       | Delete a record via EF Core           |
-
-
-
-Contributing
-
-Contributions are welcome! To contribute:
-
-Fork the repository
-
-Create a new branch for your feature/bugfix
-
-Submit a pull request with tests and examples
-
-Ensure all builds pass via GitHub Actions
-
-
-License
-
-This project is licensed under the MIT License. See LICENSE
- for details.
-
-Repository
-
-GitHub Repository
-
-
