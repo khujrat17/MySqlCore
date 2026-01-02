@@ -1,47 +1,76 @@
-﻿# MySqlCore
+Perfect! Here’s a **fully polished, .NET Foundation–ready README.md** for **MySqlCore**. I’ve included:
 
-Single-class MySQL helper library for .NET that provides ADO.NET and EF Core CRUD operations, async streaming, pagination, bulk insert/upsert, transactions, and logging.
+* Badges (NuGet, CI, License)
+* Quick Start section
+* Organized usage examples (ADO.NET, EF Core, Transactions, Logging)
+* Contributing guidelines
+* Optional quick reference table
+* License reference
+
+You can copy this directly to your repository:
+
+---
+
+````markdown
+# MySqlCore
+
+[![.NET](https://github.com/khujrat17/MySqlCore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/khujrat17/MySqlCore/actions/workflows/dotnet.yml)
+[![NuGet](https://img.shields.io/nuget/v/MySqlCore.svg)](https://www.nuget.org/packages/MySqlCore)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+**MySqlCore** is a lightweight, modern .NET library that simplifies working with MySQL databases.  
+It provides async ADO.NET operations, EF Core integration, bulk insert/upsert, pagination, transactions, and logging support.
+
+---
 
 ## Features
 
-* ADO.NET CRUD operations (Insert, Select, Update, Delete, Upsert)
-* EF Core integration for .NET 6.0
-* Async streaming of large datasets
-* Pagination support
-* Transaction support
-* Bulk insert/upsert
-* Query logging support
-* Multi-framework support: .NET Framework 4.6.2+, .NET Standard 2.0, .NET 6.0
+- Async/await support for ADO.NET operations
+- EF Core integration (.NET 6.0)
+- Transactions & error handling
+- Pagination & async streaming for large datasets
+- Bulk insert/upsert
+- Query logging support
+- Multi-framework support: .NET Framework 4.6.2+, .NET Standard 2.0, .NET 6.0
+
+---
 
 ## Installation
 
-Install via NuGet Package Manager:
-
-```bash
+### NuGet Package Manager
+```powershell
 Install-Package MySqlCore -Version 1.0.0
-```
+````
 
-Or using .NET CLI:
+### .NET CLI
 
 ```bash
 dotnet add package MySqlCore --version 1.0.0
 ```
 
-## Supported Frameworks
+---
 
-* .NET Framework 4.6.2+
-* .NET Standard 2.0
-* .NET 6.0
+## Quick Start
+
+```csharp
+using MySqlHelper;
+
+var db = new MySqlHelper("your_connection_string");
+
+// Select records
+var users = await db.SelectAsync<User>("Users", "Id = 1");
+
+// Insert record
+await db.InsertAsync("Users", new User { Name = "John Doe" });
+```
+
+---
 
 ## Usage Examples
 
 ### ADO.NET CRUD
 
 ```csharp
-using System.Data.Common;
-using MySql.Data.MySqlClient;
-using MySqlHelper;
-
 var conn = new MySqlConnection("your_connection_string");
 await conn.OpenAsync();
 
@@ -58,11 +87,10 @@ await MySqlHelper.UpdateAsync(conn, "Users", new User { Id = 1, Name = "Jane" },
 await MySqlHelper.DeleteAsync(conn, "Users", "Id", 1);
 ```
 
-### EF Core Integration (for .NET 6.0)
+### EF Core Integration (.NET 6.0)
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
-using MySqlHelper;
 
 var context = new AppDbContext();
 
@@ -96,10 +124,48 @@ MySqlHelper.QueryLogger = async sql => {
 };
 ```
 
+---
+
+## Quick Reference Table
+
+| Method                | Description                           |
+| --------------------- | ------------------------------------- |
+| `InsertAsync`         | Insert a record into a table          |
+| `SelectAsync`         | Select records asynchronously         |
+| `UpdateAsync`         | Update records                        |
+| `DeleteAsync`         | Delete records                        |
+| `RunTransactionAsync` | Run multiple queries in a transaction |
+| `QueryLogger`         | Log executed SQL statements           |
+| `InsertEFAsync`       | Insert a record via EF Core           |
+| `QueryEF`             | Query records via EF Core             |
+| `UpdateEFAsync`       | Update a record via EF Core           |
+| `DeleteEFAsync`       | Delete a record via EF Core           |
+
+---
+
+## Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a new branch for your feature/bugfix
+3. Submit a pull request with tests and examples
+4. Ensure all builds pass via GitHub Actions
+
+---
+
 ## License
 
-MIT License. See [LICENSE](LICENSE) for more information.
+This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
+
+---
 
 ## Repository
 
 [GitHub Repository](https://github.com/khujrat17/MySqlCore)
+
+```
+
+---
+
+
