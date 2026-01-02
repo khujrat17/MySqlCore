@@ -1,15 +1,4 @@
-Perfect! Here’s a **fully polished, .NET Foundation–ready README.md** for **MySqlCore**. I’ve included:
 
-* Badges (NuGet, CI, License)
-* Quick Start section
-* Organized usage examples (ADO.NET, EF Core, Transactions, Logging)
-* Contributing guidelines
-* Optional quick reference table
-* License reference
-
-You can copy this directly to your repository:
-
----
 
 ````markdown
 # MySqlCore
