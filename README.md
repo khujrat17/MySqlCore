@@ -1,4 +1,4 @@
-#  MySqlCore
+# MySqlCore
 
 [![.NET](https://github.com/khujrat17/MySqlCore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/khujrat17/MySqlCore/actions/workflows/dotnet.yml)
 [![NuGet](https://img.shields.io/nuget/v/MySqlCore.svg)](https://www.nuget.org/packages/MySqlCore)
@@ -28,11 +28,11 @@ It provides async ADO.NET operations, EF Core integration, bulk insert/upsert, p
 
 ### NuGet Package Manager
 
-```powershell
+```powershell 
 Install-Package MySqlCore -Version 1.0.0
 ```
 
-### .NET CLI
+### .NET CLI 
 
 ```bash
 dotnet add package MySqlCore --version 1.0.0
@@ -58,7 +58,9 @@ await db.InsertAsync("Users", new User { Name = "John Doe" });
 
 ---
 
-## Usage Examples
+##  Usage Examples
+
+
 
 ### ADO.NET CRUD
 
@@ -157,7 +159,7 @@ MySqlHelper.QueryLogger = async sql => {
 
 ## Contributing
 
- Contributions are welcome! To contribute:
+ Contributions are welcome! To contribute find below:
 
 1. Fork the repository
 2. Create a new branch for your feature/bugfix
