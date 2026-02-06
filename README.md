@@ -1,4 +1,4 @@
-# MySqlCore
+#  MySqlCore
 
 [![.NET](https://github.com/khujrat17/MySqlCore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/khujrat17/MySqlCore/actions/workflows/dotnet.yml)
 [![NuGet](https://img.shields.io/nuget/v/MySqlCore.svg)](https://www.nuget.org/packages/MySqlCore)
@@ -8,7 +8,7 @@
 **MySqlCore** is a lightweight, modern .NET library that simplifies working with MySQL databases.
 It provides async ADO.NET operations, EF Core integration, bulk insert/upsert, pagination, transactions, and logging support.
 
-> ⚡ All public classes and methods include XML documentation for IntelliSense.
+> ⚡  All public classes and methods include XML documentation for IntelliSense.
 
 ---
 
@@ -157,7 +157,7 @@ MySqlHelper.QueryLogger = async sql => {
 
 ## Contributing
 
-Contributions are welcome! To contribute:
+ Contributions are welcome! To contribute:
 
 1. Fork the repository
 2. Create a new branch for your feature/bugfix
@@ -168,7 +168,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines.
 
 ---
 
-## Getting Help
+##  Getting Help
 
 * File issues via [GitHub Issues](https://github.com/khujrat17/MySqlCore/issues)
 * Check usage examples above
@@ -185,3 +185,8 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for d
 ## Repository
 
 [GitHub Repository](https://github.com/khujrat17/MySqlCore)
+
+
+
+
+
